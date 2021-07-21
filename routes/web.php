@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FigureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(
+    ['prefix' => 'figures', 'as' => 'figures.'],
+    static function () {
+        Route::post('/', [FigureController::class, 'getImage'])->name('getImage');
+    }
+);
